@@ -59,7 +59,7 @@ status:
   state: Invalid
 ```
 
-At the same time, ALL the ApiProducts are removed from the Portal, not just the ApiProduct that is referencing a non-existing usage-plan. I.e. in our case, both the HTTPBin ApiProduct and Petstore ApiProduct are removed from the Portal, where only the HTTPBin ApiProduct is misconfigured.
+At the same time, ALL (!!!) the ApiProducts are removed from the Portal, not just the ApiProduct that is referencing a non-existing usage-plan. I.e. in our case, both the HTTPBin ApiProduct and Petstore ApiProduct are removed from the Portal, where only the HTTPBin ApiProduct is misconfigured.
 
 
 # Conclusion
