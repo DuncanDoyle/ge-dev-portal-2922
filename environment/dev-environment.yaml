@@ -1,0 +1,56 @@
+apiVersion: portal.gloo.solo.io/v1beta1
+kind: Environment
+metadata:
+  name: dev
+  namespace: portal-env
+spec:
+  domains:
+  - api.example.com
+  displayInfo:
+    description: This environment is meant for developers to deploy and test their APIs.
+    displayName: Development
+  parameters:
+    usagePlans:
+      basic:
+        displayName: Basic plan with API key auth
+        authPolicy:
+          apiKey: { }
+        rateLimit:
+          requestsPerUnit: 5
+          unit: MINUTE
+      gold:
+        displayName: Gold plan with API key auth
+        authPolicy:
+          apiKey: { }
+        rateLimit:
+          requestsPerUnit: 50
+          unit: MINUTE 
+      ultimate:
+        displayName: Ultimate plan with API key auth
+        authPolicy:
+          apiKey: { }
+        rateLimit:
+          requestsPerUnit: 500
+          unit: MINUTE
+  apiProducts:
+  - namespaces:
+    - "*" 
+    labels:
+    - key: app
+      operator: Equals
+      values:
+      - petstore
+    basePath: /petstore
+    versions:
+      tags:
+      - stable
+  - namespaces:
+    - "*" 
+    labels:
+    - key: app
+      operator: Equals
+      values:
+      - httpbin
+    versions:
+      tags:
+      - stable

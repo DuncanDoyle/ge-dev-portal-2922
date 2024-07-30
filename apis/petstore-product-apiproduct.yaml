@@ -1,0 +1,30 @@
+apiVersion: portal.gloo.solo.io/v1beta1
+kind: APIProduct
+metadata:
+  name: petstore-product
+  namespace: default
+  labels:
+    app: petstore
+spec:
+  displayInfo: 
+    description: Petstore Product. We add some extra text here. I think this actually ends up in the final stitched APIDoc.
+    title: Petstore Product
+  usagePlans:
+  - basic
+  - gold
+  versions:
+  - name: v1
+    apis:
+    - apiDoc:
+        name: petstore-schema
+        namespace: default
+    gatewayConfig:
+      route:
+        inlineRoute:
+          backends:
+          - upstream:
+              name: default-petstore-8080
+              namespace: gloo-system
+    tags:
+      stable: {}
+  

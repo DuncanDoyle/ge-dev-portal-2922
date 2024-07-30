@@ -1,0 +1,30 @@
+apiVersion: portal.gloo.solo.io/v1beta1
+kind: APIProduct
+metadata:
+  name: httpbin
+  namespace: httpbin
+  labels:
+    app: httpbin
+spec:
+  displayInfo: 
+    description: HTTPBin Product. We add some extra text here.
+    title: HTTPBin Product.
+  usagePlans:
+  - basic
+  - gold
+  - ultimate
+  versions:
+  - name: v1
+    apis:
+    - apiDoc:
+        name: httpbin-schema
+        namespace: httpbin
+    gatewayConfig:
+      route:
+        inlineRoute:
+          backends:
+          - upstream:
+              name: httpbin-httpbin-8000
+              namespace: gloo-system
+    tags:
+      stable: {}
